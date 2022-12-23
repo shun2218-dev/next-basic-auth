@@ -1,33 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).\
+
+This project uses [Next.js 13](https://nextjs.org/blog/next-13) and adopts app directory structure powered by [`Turbopack`](https://turbo.build/repo).
+
+Only basic authentication is implemented in this application.
 
 ## Getting Started
 
 First, run the development server:
 
-```bash
-npm run dev
+```diff_bash
+- npm run dev
++ npx turbo dev
 # or
-yarn dev
+- yarn dev
++ yarn turbo dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying ~~`pages/index.tsx`~~ `app/page.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/auth](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/auth.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## For the part related to Basic Authentication
 
-## Learn More
+The authentication decision for Basic Authentication is written in `middleware.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+`pages/api/auth.ts` contains settings for Basic Authentication.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`lib/buffer.ts` contains a function (decodeBase64) to decode the value entered during Basic Authentication from binary data to ASCII. Although not used, a function (endodeBase64) to encode is also provided.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To use Basic Authentication, create an `.env` file and set the user name in `NEXT_PUBLIC_USER` and the password in `NEXT_PUBLIC_PASS` with any value.
 
 ## Deploy on Vercel
 
